@@ -1,13 +1,26 @@
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function TabLayout() {
+const TabLayout = () => {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "#007AFF",
-        tabBarInactiveTintColor: "#8E8E93",
+        tabBarActiveTintColor: "#E6B10A",
+        tabBarInactiveTintColor: "#FFFFFF",
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: "#000000",
+          height: 65,
+          paddingBottom: 10,
+          borderTopWidth: 0,
+        },
+        tabBarLabelStyle: {
+          fontSize: 14,
+          fontWeight: "bold",
+        },
+        tabBarIconStyle: {
+          marginTop: 2,
+        },
       }}
     >
       <Tabs.Screen
@@ -15,7 +28,7 @@ export default function TabLayout() {
         options={{
           title: "Films",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="film" size={size} color={color} />
+            <Ionicons name="film" size={28} color={color} />
           ),
         }}
       />
@@ -24,10 +37,12 @@ export default function TabLayout() {
         options={{
           title: "Favoris",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="heart" size={size} color={color} />
+            <Ionicons name="heart" size={28} color={color} />
           ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
