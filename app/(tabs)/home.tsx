@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import {
   SafeAreaView,
   View,
@@ -11,6 +11,7 @@ import { RootState } from "../../store";
 import { fetchMovies, setCurrentView } from "../../store/slices/movieSlice";
 import MovieList from "../../components/home/moviesList/MovieList";
 import SearchAndFilters from "../../components/home/searchAndFilters/SearchAndFilters";
+
 const Home = () => {
   const { movies, loading, error, currentView, hasMore, page } = useSelector(
     (state: RootState) => state.movie
