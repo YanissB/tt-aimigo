@@ -19,7 +19,6 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
     animatedHeartStyle,
     rippleStyle,
     getParticleStyles,
-    particleOpacity,
   } = useFavoriteAnimation();
 
   // 🌟 Particules - Trajectoire prédéfinie

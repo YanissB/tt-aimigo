@@ -11,17 +11,8 @@ export const useMovies = () => {
   const dispatch = useDispatch();
   const initialFetchDone = useRef<boolean>(false);
 
-  const {
-    popularMovies,
-    nowPlayingMovies,
-    movies,
-    filters,
-    page,
-    loading,
-    error,
-    hasMore,
-    currentView,
-  } = useSelector((state: RootState) => state.movie);
+  const { movies, filters, page, loading, error, hasMore, currentView } =
+    useSelector((state: RootState) => state.movie);
 
   useEffect(() => {
     if (!initialFetchDone.current) {

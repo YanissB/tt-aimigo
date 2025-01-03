@@ -27,7 +27,7 @@ const TabLayout = () => {
         name="home"
         options={{
           title: "Films",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Ionicons name="film" size={28} color={color} />
           ),
         }}
@@ -36,7 +36,7 @@ const TabLayout = () => {
         name="favorite"
         options={{
           title: "Favoris",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ color }) => (
             <Ionicons name="heart" size={28} color={color} />
           ),
         }}
