@@ -10,8 +10,14 @@ import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { fetchMovieDetails } from "../../api/tmdbApi";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { addFavorite, removeFavorite } from "../../store/slices/favoritesSlice";
+import { Ionicons } from "@expo/vector-icons";
+import FavoriteButton from "../../components/common/favoriteButton/FavoriteButton";
 
 interface MovieDetails {
+  id: number;
   title: string;
   overview: string;
   release_date: string;
@@ -25,9 +31,16 @@ interface MovieDetails {
 const DetailedMovie = () => {
   const { id } = useLocalSearchParams();
   const router = useRouter();
+  const dispatch = useDispatch();
+
   const [movie, setMovie] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const favorites = useSelector(
+    (state: RootState) => state.favorites.favorites
+  );
+  const isFavorite = favorites.some((fav) => fav.id === Number(id));
 
   useEffect(() => {
     const loadMovieDetails = async () => {
@@ -44,6 +57,24 @@ const DetailedMovie = () => {
 
     loadMovieDetails();
   }, [id]);
+
+  const toggleFavorite = () => {
+    if (!movie) return;
+    if (isFavorite) {
+      dispatch(removeFavorite(movie.id));
+    } else {
+      dispatch(
+        addFavorite({
+          id: movie.id,
+          title: movie.title,
+          posterPath: movie.poster_path,
+          overview: movie.overview,
+          release_date: movie.release_date,
+          vote_average: movie.vote_average,
+        })
+      );
+    }
+  };
 
   if (loading) {
     return (
@@ -73,13 +104,21 @@ const DetailedMovie = () => {
             className="w-full aspect-[2/3]"
             resizeMode="contain"
           />
+          {/* Bouton Retour */}
           <TouchableOpacity
             onPress={() => router.back()}
             className="absolute w-10 h-10 top-4 left-4 bg-black/50 justify-center items-center rounded-full"
           >
-            <Text className="text-white text-xl">←</Text>
+            <Ionicons name="chevron-back" size={24} color="white" />
           </TouchableOpacity>
+
+          {/* Icône de Cœur */}
+          <View className="absolute w-10 h-10 top-4 right-4 bg-transparent justify-center items-center rounded-full">
+            <FavoriteButton isFavorite={isFavorite} onToggle={toggleFavorite} />
+          </View>
         </View>
+
+        {/* Contenu du film */}
         <View className="p-4">
           <Text className="text-2xl font-bold text-white mb-2">
             {movie.title}
@@ -97,13 +136,16 @@ const DetailedMovie = () => {
           </View>
 
           <View className="flex-row justify-between mb-4">
-            <Text className="text-white">
-              📅 {new Date(movie.release_date).toLocaleDateString("fr-FR")}
+            <Text className="text-white ">
+              📅
+              {"  "}
+              {new Date(movie.release_date).toLocaleDateString("fr-FR")}
             </Text>
             <Text className="text-white">
-              ⭐️ {movie.vote_average.toFixed(1)}/10
+              ⭐{"  "}
+              {movie.vote_average.toFixed(1)}/10
             </Text>
-            <Text className="text-white">⏱ {movie.runtime} min</Text>
+            <Text className="text-white">🕦 {movie.runtime} min</Text>
           </View>
 
           <Text className="text-lg font-bold text-white mb-2">Synopsis</Text>
