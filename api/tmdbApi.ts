@@ -4,26 +4,15 @@ import apiClient from "./apiClient";
  * Fetch Popular Movies
  * @param page Page number for pagination (default: 1)
  * @param language Language for movie data (default: 'fr-FR')
- * @param region Optional region filter
  */
 export const fetchPopularMovies = async (
   page: number = 1,
-  language: string = "fr-FR",
-  year?: string,
-  yearFilterType?: "exact" | "until"
+  language: string = "fr-FR"
 ) => {
   const params: any = {
     page,
     language,
   };
-
-  if (year) {
-    if (yearFilterType === "exact") {
-      params.primary_release_year = year;
-    } else if (yearFilterType === "until") {
-      params.release_date_lte = `${year}-12-31`;
-    }
-  }
 
   const response = await apiClient.get("/movie/popular", { params });
   return response.data;
@@ -33,26 +22,15 @@ export const fetchPopularMovies = async (
  * Fetch Now Playing Movies
  * @param page Page number for pagination (default: 1)
  * @param language Language for movie data (default: 'fr-FR')
- * @param region Optional region filter
  */
 export const fetchNowPlayingMovies = async (
   page: number = 1,
-  language: string = "fr-FR",
-  year?: string,
-  yearFilterType?: "exact" | "until"
+  language: string = "fr-FR"
 ) => {
   const params: any = {
     page,
     language,
   };
-
-  if (year) {
-    if (yearFilterType === "exact") {
-      params.primary_release_year = year;
-    } else if (yearFilterType === "until") {
-      params.release_date_lte = `${year}-12-31`;
-    }
-  }
 
   const response = await apiClient.get("/movie/now_playing", { params });
   return response.data;

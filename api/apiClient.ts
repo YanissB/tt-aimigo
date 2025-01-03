@@ -1,9 +1,6 @@
 import axios from "axios";
 import { TMDB_ACCESS_TOKEN } from "@env";
 
-/**
- * Axios instance for TMDB API
- */
 const apiClient = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   headers: {
@@ -13,9 +10,6 @@ const apiClient = axios.create({
   },
 });
 
-/**
- * Request Interceptor
- */
 apiClient.interceptors.request.use(
   (config) => {
     console.log("Request Config:", config.url, config.headers);
@@ -27,9 +21,6 @@ apiClient.interceptors.request.use(
   }
 );
 
-/**
- * Response Interceptor
- */
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {

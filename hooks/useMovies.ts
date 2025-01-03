@@ -34,9 +34,6 @@ export const useMovies = () => {
     }
   }, []);
 
-  /**
-   * Charger plus de films pour la pagination
-   */
   const fetchMore = () => {
     if (!loading && hasMore) {
       if (currentView === "search") {
@@ -56,21 +53,14 @@ export const useMovies = () => {
     }
   };
 
-  /**
-   * Mettre à jour le titre recherché
-   */
   const changeQuery = (query: string) => {
     dispatch(setQuery(query));
   };
 
-  /**
-   * Réinitialiser tous les filtres
-   */
   const resetAllFilters = () => {
     dispatch(resetFilters());
   };
 
-  // Détermine quels films afficher en fonction de la vue courante
   const displayedMovies = movies;
 
   return {

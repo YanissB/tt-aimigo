@@ -50,7 +50,6 @@ const initialState: MovieState = {
   },
 };
 
-// Action Asynchrone pour Charger les Films avec Filtres
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
   async (
@@ -136,25 +135,18 @@ const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    /**
-     * Met à jour le titre recherché
-     */
     setQuery: (state, action: PayloadAction<string>) => {
       state.filters.query = action.payload;
       state.movies = [];
       state.page = 1;
     },
-    /**
-     * Met à jour l'année de sortie
-     */
+
     setReleaseYear: (state, action: PayloadAction<string>) => {
       state.filters.releaseYear = action.payload;
       state.movies = [];
       state.page = 1;
     },
-    /**
-     * Réinitialise tous les filtres
-     */
+
     resetFilters: (state) => {
       state.filters = {
         query: "",
@@ -164,6 +156,7 @@ const movieSlice = createSlice({
       state.movies = [];
       state.page = 1;
     },
+
     setCurrentView: (
       state,
       action: PayloadAction<"popular" | "now_playing" | "search">
@@ -173,6 +166,7 @@ const movieSlice = createSlice({
       state.movies = [];
       state.hasMore = true;
     },
+
     setYearFilterType: (state, action: PayloadAction<"exact" | "until">) => {
       state.filters.yearFilterType = action.payload;
       state.movies = [];

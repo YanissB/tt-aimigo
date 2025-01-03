@@ -53,13 +53,10 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
   return (
     <View className="bg-black/50 rounded-full  justify-center items-center">
       <View className="relative w-10 h-10 justify-center items-center">
-        {/* Aura lumineuse */}
         <Animated.View
           style={rippleStyle}
           className="absolute w-12 h-12 rounded-full bg-red-300/50"
         />
-
-        {/* Particules */}
         {particleStyles.map((style, index) => (
           <Animated.View
             key={index}
@@ -67,8 +64,6 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({
             className="absolute w-1.5 h-1.5 rounded-full bg-yellow-400"
           />
         ))}
-
-        {/* Icône du cœur */}
         <TouchableOpacity
           onPress={handlePress}
           activeOpacity={0.7}

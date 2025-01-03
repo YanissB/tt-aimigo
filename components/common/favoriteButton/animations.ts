@@ -7,7 +7,6 @@ import {
   withSpring,
 } from "react-native-reanimated";
 
-// 🌟 Logique d'animation séparée
 export const useFavoriteAnimation = () => {
   const scale = useSharedValue(1);
   const rippleScale = useSharedValue(0);

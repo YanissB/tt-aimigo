@@ -7,7 +7,6 @@ import MovieList from "../../components/home/moviesList/MovieList";
 const Favorite = () => {
   const { favorites } = useSelector((state: RootState) => state.favorites);
 
-  // Convertir les favoris au format attendu par MovieList
   const formattedFavorites = favorites.map((favorite) => ({
     id: favorite.id,
     title: favorite.title,

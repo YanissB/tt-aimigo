@@ -34,8 +34,6 @@ const FilterModal = ({
     >
       <View className="bg-gray-800 rounded-t-3xl p-4">
         <Text className="text-white text-xl font-bold mb-4">Filtres</Text>
-
-        {/* Boutons de type de filtre */}
         <View className="flex-row mb-4">
           <TouchableOpacity
             onPress={() =>
@@ -79,8 +77,6 @@ const FilterModal = ({
             </Text>
           </TouchableOpacity>
         </View>
-
-        {/* Sélecteur d'année */}
         <View className="bg-gray-700 rounded-xl mb-4">
           <Picker
             selectedValue={localFilters.releaseYear}
@@ -100,8 +96,6 @@ const FilterModal = ({
             ))}
           </Picker>
         </View>
-
-        {/* Boutons d'action */}
         <View className="flex-row justify-between">
           <TouchableOpacity
             onPress={() => {
